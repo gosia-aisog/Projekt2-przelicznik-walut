@@ -12,6 +12,8 @@ const qs = (selector) => document.querySelector(selector);
 //DOM Elements:
 const btnDOM = qs("#convert");
 const selectDOM = qs("#choice");
+const formDOM = qs("#form-id");
+const inputDOM = qs("#input-value");
 
 //GET data:
 fetch("http://api.nbp.pl/api/exchangerates/tables/a/?format=json")
@@ -28,6 +30,14 @@ selectDOM.addEventListener("change", (e) => {
   console.log(chosenCurrencyCode);
 });
 
-btnDOM.addEventListener("click", converterFunction);
+//wunkcja wyciągająca z inputa wartość podaną przez użytkownika
+let getValue;
+inputDOM.addEventListener("input", (e) => {
+  e.preventDefault();
+  const getValue = e.target.value;
+  console.log(getValue);
+});
 
-converterFunction = () => {};
+// btnDOM.addEventListener("click", converterFunction);
+
+// converterFunction = () => {};
