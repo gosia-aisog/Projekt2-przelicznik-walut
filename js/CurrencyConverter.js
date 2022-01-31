@@ -15,7 +15,7 @@ const selectDOM = qs("#choice");
 const formDOM = qs("#form-id");
 const inputDOM = qs("#input-value");
 
-//GET data:
+//GET data z API:
 fetch("http://api.nbp.pl/api/exchangerates/tables/a/?format=json")
   .then((response) => response.json())
   .then((data) => {
@@ -24,13 +24,21 @@ fetch("http://api.nbp.pl/api/exchangerates/tables/a/?format=json")
   })
   .catch((err) => console.error(err));
 
+// wybranie waluty przez uzytkownika
+//i znalezienie dla niej wartości
 selectDOM.addEventListener("change", (e) => {
   e.preventDefault();
   const chosenCurrencyCode = e.target.value;
   console.log(chosenCurrencyCode);
+  const chosenCurrencyMid = () => {
+    const currencyProperties = currencies.find(
+      ({ code }) => code === chosenCurrencyCode
+    );
+    console.log(currencyProperties);
+  };
 });
 
-//wunkcja wyciągająca z inputa wartość podaną przez użytkownika
+//funkcja wyciągająca z inputa wartość podaną przez użytkownika
 let getValue;
 inputDOM.addEventListener("input", (e) => {
   e.preventDefault();
