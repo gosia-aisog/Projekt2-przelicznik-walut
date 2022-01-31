@@ -14,13 +14,33 @@ const btnDOM = qs("#convert");
 const selectDOM = qs("#choice");
 const formDOM = qs("#form-id");
 const inputDOM = qs("#input-value");
+const containerDOM = qs("#container");
+const resultDOM = qs("#result");
+
+let currencies;
+let resultAction;
+
+let midCurrency;
+
+//functions
+const chosenCurrencyMid = (currencies, chosenCurrencyCode) => {
+  return currencies.find(({ code }) => code === chosenCurrencyCode).mid;
+};
+
+const converterFunction = (getValue, midCurrency) => {
+  const resultAction = Number(getValue * midCurrency);
+  console.log(getValue * midCurrency);
+  console.log(resultAction);
+  resultDOM.innerHTML = resultAction;
+};
 
 //GET data z API:
 fetch("http://api.nbp.pl/api/exchangerates/tables/a/?format=json")
   .then((response) => response.json())
   .then((data) => {
-    let currencies = data[0].rates;
+    currencies = data[0].rates;
     console.log(currencies);
+    console.log(typeof currencies);
   })
   .catch((err) => console.error(err));
 
@@ -28,24 +48,21 @@ fetch("http://api.nbp.pl/api/exchangerates/tables/a/?format=json")
 //i znalezienie dla niej wartości
 selectDOM.addEventListener("change", (e) => {
   e.preventDefault();
-  const chosenCurrencyCode = e.target.value;
-  console.log(chosenCurrencyCode);
-  const chosenCurrencyMid = () => {
-    const currencyProperties = currencies.find(
-      ({ code }) => code === chosenCurrencyCode
-    );
-    console.log(currencyProperties);
-  };
+  const midCurrency = chosenCurrencyMid(currencies, e.target.value);
+  console.log(midCurrency);
+  console.log(typeof midCurrency);
 });
 
 //funkcja wyciągająca z inputa wartość podaną przez użytkownika
 let getValue;
 inputDOM.addEventListener("input", (e) => {
   e.preventDefault();
-  const getValue = e.target.value;
+  const getValue = Number(e.target.value);
   console.log(getValue);
+  console.log(typeof getValue);
 });
 
-// btnDOM.addEventListener("click", converterFunction);
-
-// converterFunction = () => {};
+btnDOM.addEventListener("click", (e) => {
+  e.preventDefault();
+  converterFunction();
+});
