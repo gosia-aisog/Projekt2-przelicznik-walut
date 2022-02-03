@@ -23,7 +23,7 @@ const converterFunction = (getValue, midCurrency) => {
   const resultAction = getValue * midCurrency;
   console.log(getValue * midCurrency);
   console.log(resultAction);
-  resultDOM.innerHTML = resultAction;
+  resultDOM.innerHTML = ` ${resultAction}  &nbsp PLN`;
 };
 
 //GET data z API:
