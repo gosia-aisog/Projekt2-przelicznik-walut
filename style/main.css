@@ -17,6 +17,12 @@ h3 {
   color: white;
 }
 
+#form-id {
+  display: flex;
+  flex-flow: column;
+  /* align-items: center; */
+}
+
 #container {
   max-width: 700;
   display: flex;

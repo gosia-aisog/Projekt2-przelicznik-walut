@@ -20,7 +20,7 @@ const chosenCurrencyMid = (currencies, chosenCurrencyCode) => {
 };
 
 const converterFunction = (getValue, midCurrency) => {
-  const resultAction = getValue * midCurrency;
+  const resultAction = (getValue * midCurrency).toFixed(6);
   console.log(getValue * midCurrency);
   console.log(resultAction);
   resultDOM.innerHTML = ` ${resultAction}  &nbsp PLN`;
