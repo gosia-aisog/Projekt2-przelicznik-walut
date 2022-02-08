@@ -1,12 +1,3 @@
-//STATE
-//UPDATE <FUNCS>
-//VIEW (UI)
-//EVENTS
-
-//STATE->VIEW (show view+state)np. renderIncomes
-//EVENT -> STATE ->UPDATE ->NEW STATE -> VIEW (view+newState)
-// https://staltz.com/img/mvu-unidir-ui-arch.jpg
-
 const qs = (selector) => document.querySelector(selector);
 
 //DOM Elements:
